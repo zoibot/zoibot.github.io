@@ -9,6 +9,9 @@
     <h1>{{ page.title }}</h1>
       <nav>
         <a href="/">home</a>
+        {% if page.back %}
+          <a href="{{page.back}}">back</a>
+        {%}
       </nav>
     </header>
     <article>

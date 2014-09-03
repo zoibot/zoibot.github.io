@@ -1,6 +1,7 @@
 ---
 layout: base
 title: nes
+back: /coding
 ---
 
 A while ago I wanted to see how hard it would be to write an emulator. I picked the NES because it seemed relatively simple and very well documented.
