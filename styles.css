@@ -1,6 +1,26 @@
+body {
+    font-family: sans-serif;
+}
+
+header {
+    background-color: #ddd;
+    padding: 20px;
+}
+
+h1 {
+    display: inline-block;
+    margin: 0;
+}
+
+nav {
+    display: block;
+    padding-top: 10px;
+}
+
 nav li {
     list-style: none;
 }
 nav a {
-    display: block;
+    display: inline-block;
+    margin-left: 20px;
 }
