@@ -11,5 +11,6 @@ Here are some projects I've been working on
   * [Hexheat](/coding/hexheat)
 
 I've also got some project ideas
+
   * [home automation](/coding/automation)
   * bike computer
