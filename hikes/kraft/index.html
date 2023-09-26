@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+<!-- TODO turn this into md -->
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <title>zoibot | Ways up Kraft Mountain</title>
+    <style>
+        #container {
+            overflow: hidden;
+            min-height: 600px;
+            border: 1px solid black;
+        }
+
+        #img img {
+            width: 1200px;
+            user-select: none;
+            cursor: move;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body onmouseup="end()" onmousemove="move(event)">
+
+    <header>
+        <h1>Ways up Kraft Mountain (La Hija)</h1>
+        <nav>
+            <a href="/">home</a>
+            <a href="/hikes">back</a>
+        </nav>
+    </header>
+    <article>
+
+        <p>Kraft Mountain (also known as La Hija) is a pile of rocks on the north side of Calico Basin in Red Rock
+            Canyon.
+            Its summit rises about a thousand feet above the basin below. The combination of proximity to the road,
+            relatively low elevation gain, and interesting but forgiving terrain make it a very fun objective for a
+            quick
+            morning or afternoon. </p>
+
+        <p>The top is fairly flat and features two high points: the actual summit and a sub-peak called "Big Bird Peak".
+            Big
+            bird requires a </p>
+
+        <p>Usually I would stick to the same route: heading up the west most gully on the south face, and then
+            descending by
+            the west ridge to the saddle between Kraft and New Peak (I've heard this called "Pink Goblin Pass"). I
+            originally found this in Courtney Purcell's *Rambles and Scrambles*. </p>
+        <p>As I've continued to visit Kraft, I've tried going different ways and thought it would be fun to document all
+            of
+            the ways I could find to get to the top.</p>
+
+        <h2>South Face</h2>
+        <p>The south face of Kraft features several gullies which could be viable routes. I've successfully made it up
+            the
+            two marked in blue. The "standard route" I mentioned above is the farthest left in the picture. The routes
+            marked in purple are ones I'd like to explore, some of which seem more viable than others.</p>
+        <div id="controls">
+            <button onclick="zoomin()">+</button>
+            <button onclick="zoomout()">-</button>
+            <button onclick="reset()">reset</button>
+        </div>
+        <div id="container">
+            <div id="img" onmousedown="start()" ondblclick="zoomin()">
+
+            </div>
+        </div>
+
+        <h2>West Ridge</h2>
+        <p>This is my standard descent route. It's low angle enough that you can choose any path you'd like and make
+            your
+            way up or down. This begins at the saddle with New Peak so it's nice if you want to link that up as well.
+        </p>
+
+        <h2>East Ridge</h2>
+        <p>I've been up one way toward the east side but don't have a good picture. The </p>
+
+    </article>
+    <script>
+        const layerConfig = [
+            { label: 'base', path: 'layers/layer0.png' },
+            { label: 'standard', path: 'layers/layer1.png' },
+            { label: 'r2', path: 'layers/layer2.png' },
+            { label: 'r3', path: 'layers/layer3.png' },
+            { label: 'r4', path: 'layers/layer4.png' },
+            { label: 'ledge', path: 'layers/layer5.png' },
+        ];
+        const layers = [];
+        const controls = document.getElementById('controls');
+        const container = document.getElementById('img');
+        for (let layer of layerConfig) {
+            let img = document.createElement('img');
+            layers.push(img);
+            img.src = layer.path;
+            img.draggable = false;
+            container.appendChild(img);
+
+            let label = document.createElement('label');
+            let check = document.createElement('input');
+            check.type = 'checkbox';
+            check.checked = true;
+            check.addEventListener('click', ((i) => () => { i.style.display = check.checked ? 'block' : 'none'; })(img));
+            label.appendChild(check);
+            label.appendChild(document.createTextNode(layer.label));
+            controls.appendChild(label);
+        }
+        // TODO
+        // centered zoom in
+        let scale, x, y;
+        function zoomin() {
+            scale += 0.3;
+            document.getElementById("img").style.scale = scale;
+        }
+        function zoomout() {
+            scale -= 0.3;
+            document.getElementById("img").style.scale = scale;
+        }
+        function reset() {
+            scale = 1;
+            x = 0, y = 0;
+            document.getElementById("img").style.scale = scale;
+            document.getElementById("img").style.translate = `${x}px ${y}px`;
+        }
+        var dragging = false;
+        function start() {
+            dragging = true;
+        }
+        function move(e) {
+            if (dragging) {
+                x += e.movementX;
+                y += e.movementY;
+                document.getElementById("img").style.translate = `${x}px ${y}px`;
+            }
+        }
+        function end() {
+            dragging = false;
+        }
+
+        reset();
+    </script>
+</body>
+
+</html>

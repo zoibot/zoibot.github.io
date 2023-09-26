@@ -2,16 +2,14 @@
 layout: base
 title: home
 ---
-I like programming emulators, building robots, and video games
+I don't know what I like, but here are some things I've done.
 
+[Hikes](hikes)
 
 [Games](games)
 
-
 [Coding](coding)
 
-
 [Robots](robots)
-
 
 [Bikes](bikes)
